@@ -1,0 +1,96 @@
+body {
+    font-family: sans-serif;
+    padding: 2em;
+    max-width: 900px;
+    margin: auto;
+}
+
+input,
+button {
+    box-sizing: border-box;
+    padding: 0.5em;
+    font-size: 1em;
+    margin-top: 1em;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    font-size: 1em;
+    table-layout: fixed;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 0.75em;
+    text-align: left;
+    height: 1.5em;
+}
+
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+td {
+    font-family: monospace;
+}
+
+table.result th:nth-child(3),
+table.result td:nth-child(3) {
+    width: 150px;
+}
+
+table.result td:nth-child(3) {
+    text-align: right;
+}
+
+table.result th:nth-child(2),
+table.result td:nth-child(2),
+table.result th:nth-child(4),
+table.result td:nth-child(4) {
+    width: 20px;
+}
+
+table.result td:nth-child(1),
+table.result th:nth-child(1),
+table.result td:nth-child(3),
+table.result th:nth-child(3) {
+    border-right: none;
+}
+
+table.result td:nth-child(2),
+table.result th:nth-child(2),
+table.result td:nth-child(4),
+table.result th:nth-child(4) {
+    border-left: none;
+}
+
+.clipboard {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.clipboard::before {
+    content: "🗐";
+}
+
+.clipboard:hover {
+    color: #007BFF;
+}
+
+.footnote {
+    padding: 0.75em;
+}
