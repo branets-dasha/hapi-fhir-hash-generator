@@ -1,12 +1,25 @@
-const debouncedComputeInputHash = debounce(computeInputHash, 300);
-const debouncedComputeTrfHashes = debounce(computeTrfHashes, 300);
+let resultIndex = 0;
 
 function computeInputHash() {
+    resultIndex = (resultIndex + 1) % 1000;
+
     const input = document.getElementById("inputValue").value;
     const hashes = computeHash(input);
 
-    document.getElementById("value").textContent = input;
-    document.getElementById("valueHash").textContent = hashes.hapiHash;
+    const tableBody = document.querySelector(".result tbody");
+
+    const newResultRow = document.createElement("tr");
+    newResultRow.innerHTML = `
+        <td id="value${resultIndex}">${input}</td>
+        <td><button class="clipboard" onclick="copyToClipboard('value${resultIndex}')" aria-label="Copy value"></button></td>
+        <td id="hash${resultIndex}">${hashes.hapiHash}</td>
+        <td><button class="clipboard" onclick="copyToClipboard('hash${resultIndex}')" aria-label="Copy HAPI hash"></button></td>
+    `;
+    tableBody.insertBefore(newResultRow, tableBody.firstChild);
+
+    while (tableBody.rows.length > 10) {
+        tableBody.deleteRow(-1);
+    }
 }
 
 function computeHash(value) {
@@ -25,37 +38,13 @@ function computeHash(value) {
     return { murmurHash, hapiHash: hapiHash.toString() };
 }
 
-function debounce(func, delay) {
-    let timeout;
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
-function computeTrfHashes() {
-    const trfNumber = document.getElementById("trfNumber").value;
-
-    const searchValueTemplates = {
-        "OBO": "Observation|based-on.identifier|TRF_NUMBER|",
-        "SR": "ServiceRequest|identifier|TRF_NUMBER|",
-        "CP": "CarePlan|identifier|TRF_NUMBER|",
-        "DR": "DeviceRequest|identifier|TRF_NUMBER|",
-        "IR": "ImmunizationRecommendation|identifier|TRF_NUMBER|",
-        "MR": "MedicationRequest|identifier|TRF_NUMBER|",
-        "NO": "NutritionOrder|identifier|TRF_NUMBER|",
-    };
-
-    for (const key in searchValueTemplates) {
-        const searchValue = searchValueTemplates[key].replace("TRF_NUMBER", trfNumber);
-        const hashes = computeHash(searchValue);
-
-        document.getElementById(`trfSearchValue${key}`).textContent = searchValue;
-        document.getElementById(`trfSearchHash${key}`).textContent = hashes.hapiHash;
-    }
-}
-
 function copyToClipboard(elementId) {
     const text = document.getElementById(elementId).textContent;
     navigator.clipboard.writeText(text);
 }
+
+function onInputValueKeyPressed(event) {
+    if (event.key === "Enter") {
+        computeInputHash();
+    }
+};

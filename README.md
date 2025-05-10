@@ -1,6 +1,6 @@
 # HAPI FHIR hash generator
 
-**[Open the tool](https://github.com/pages/branets-dasha/hapi-fhir-hash-generator/)**
+**[Open the tool](https://branets-dasha.github.io/hapi-fhir-hash-generator/)**
 
 The tool for generating hashes used by [HAPI FHIR](https://hapifhir.io/) in search queries.
 

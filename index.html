@@ -14,7 +14,8 @@
 
     <h2>Hash value</h2>
 
-    <input type="text" id="inputValue" placeholder="Value to hash" oninput="debouncedComputeInputHash()" />
+    <input type="text" id="inputValue" placeholder="Value to hash" onkeypress="onInputValueKeyPressed(event)" />
+    <button id="generateHashButton" onclick="computeInputHash()">Generate Hash</button>
 
     <table class="result">
         <thead>
@@ -26,64 +27,60 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td id="value"></td>
-                <td><button class="clipboard" onclick="copyToClipboard('value')" aria-label="Copy value"></button></td>
-                <td id="valueHash"></td>
-                <td><button class="clipboard" onclick="copyToClipboard('valueHash')" aria-label="Copy HAPI hash"></button></td>
-            </tr>
         </tbody>
     </table>
 
-    <h2>Hash columns reference</h2>
+    <section class="reference">
+        <h2>Hash columns reference</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Column</th>
-                <th>What's hashed</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>HASH_IDENTITY</td>
-                <td>RES_TYPE|SP_NAME|</td>
-            </tr>
-            <tr>
-                <td>HASH_IDENTITY_AND_UNITS</td>
-                <td>RES_TYPE|SP_NAME|SP_UNITS|</td>
-            </tr>
-            <tr>
-                <td>HASH_IDENTITY_SYS_UNITS</td>
-                <td>RES_TYPE|SP_NAME|SP_SYSTEM|SP_UNITS|</td>
-            </tr>
-            <tr>
-                <td>HASH_EXACT</td>
-                <td>RES_TYPE|SP_NAME|SP_VALUE_EXACT|</td>
-            </tr>
-            <tr>
-                <td>HASH_VALUE</td>
-                <td>RES_TYPE|SP_NAME|SP_VALUE|</td>
-            </tr>
-            <tr>
-                <td>HASH_SYS_AND_VALUE</td>
-                <td>RES_TYPE|SP_NAME|SP_SYSTEM|SP_VALUE|</td>
-            </tr>
-            <tr>
-                <td>HASH_SYS</td>
-                <td>RES_TYPE|SP_NAME|SP_SYSTEM|</td>
-            </tr>
-            <tr>
-                <td>HASH_URI</td>
-                <td>RES_TYPE|SP_NAME|SP_URI|</td>
-            </tr>
-            <tr>
-                <td>HASH_COMPLETE</td>
-                <td>IDX_STRING|</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="footnote">* The values between "|" are URL-encoded. </div>
+        <table class="compact">
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>What's hashed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HASH_IDENTITY</td>
+                    <td>RES_TYPE|SP_NAME|</td>
+                </tr>
+                <tr>
+                    <td>HASH_IDENTITY_AND_UNITS</td>
+                    <td>RES_TYPE|SP_NAME|SP_UNITS|</td>
+                </tr>
+                <tr>
+                    <td>HASH_IDENTITY_SYS_UNITS</td>
+                    <td>RES_TYPE|SP_NAME|SP_SYSTEM|SP_UNITS|</td>
+                </tr>
+                <tr>
+                    <td>HASH_EXACT</td>
+                    <td>RES_TYPE|SP_NAME|SP_VALUE_EXACT|</td>
+                </tr>
+                <tr>
+                    <td>HASH_VALUE</td>
+                    <td>RES_TYPE|SP_NAME|SP_VALUE|</td>
+                </tr>
+                <tr>
+                    <td>HASH_SYS_AND_VALUE</td>
+                    <td>RES_TYPE|SP_NAME|SP_SYSTEM|SP_VALUE|</td>
+                </tr>
+                <tr>
+                    <td>HASH_SYS</td>
+                    <td>RES_TYPE|SP_NAME|SP_SYSTEM|</td>
+                </tr>
+                <tr>
+                    <td>HASH_URI</td>
+                    <td>RES_TYPE|SP_NAME|SP_URI|</td>
+                </tr>
+                <tr>
+                    <td>HASH_COMPLETE</td>
+                    <td>IDX_STRING|</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footnote">* The values between "|" are URL-encoded. </div>
+    </section>
 
 </body>
 
